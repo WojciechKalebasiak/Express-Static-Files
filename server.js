@@ -1,5 +1,5 @@
 var express = require('express');
-app = express();
+var app = express();
 app.use(express.static('assets'));
 
 app.get('/', function(req,res) {
@@ -11,6 +11,10 @@ app.get('/useform', function(req,res){
         last_name:req.query.last_name
     };
     res.end(JSON.stringify(response));
+});
+app.use(function(req,res,next) {
+    console.log('Im here!');
+    next();
 });
 var server = app.listen(3000, 'localhost', function () {
     var host = server.address().address;
